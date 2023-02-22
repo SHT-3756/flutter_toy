@@ -70,11 +70,11 @@ flutter:
   fonts:
     - family: dongle
       fonts:
-        - asset: asset/font/Dongle-Bold.ttf
+        - asset: assets/font/Dongle-Bold.ttf
           weight: 700
-        - asset: asset/font/Dongle-Regular.ttf
+        - asset: assets/font/Dongle-Regular.ttf
           weight: 500
-        - asset: asset/font/Dongle-Light.ttf
+        - asset: assets/font/Dongle-Light.ttf
           weight: 300
   # To add assets to your application, add an assets section, like this:
   # assets:
