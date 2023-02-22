@@ -1,21 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:mbti/screen/home_screen.dart';
+import 'package:mbti/di/provider_setup.dart';
+import 'package:mbti/presentation/home/home_screen.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    MultiProvider(
+      providers: globalProviders,
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: 'Flutter Demo',
       theme: ThemeData(
-        fontFamily: 'dongle',
+        primarySwatch: Colors.blue,
       ),
-      home: HomeScreen(),
+      home: Scaffold(
+        body: HomeScreen(),
+      ),
     );
   }
 }
