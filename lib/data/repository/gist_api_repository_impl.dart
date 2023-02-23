@@ -1,3 +1,4 @@
+import 'package:mbti/data/constant/base_url.dart';
 import 'package:mbti/data/data_source/gist_api.dart';
 import 'package:mbti/data/data_source/result.dart';
 import 'package:mbti/domain/model/result/result_model.dart';
@@ -12,7 +13,7 @@ class GistApiRepositoryImpl implements ResultApiRepository, StepApiRepository {
 
   @override
   Future<Result<List<StepModel>>> fetchStep(String query) async {
-    final Result<Iterable> result = await api.fetch(query);
+    final Result<Iterable> result = await api.fetch(BaseUrl.stepBaseUrl, query);
     // 성공 실패 분기처리
     return result.when(success: (successData) {
       return Result.success(
@@ -24,7 +25,8 @@ class GistApiRepositoryImpl implements ResultApiRepository, StepApiRepository {
 
   @override
   Future<Result<List<ResultModel>>> fetchResult(String query) async {
-    final Result<Iterable> result = await api.fetch(query);
+    final Result<Iterable> result =
+        await api.fetch(BaseUrl.resultBaseUrl, query);
 
     // 성공 실패 분기처리
     return result.when(success: (successData) {
@@ -34,6 +36,4 @@ class GistApiRepositoryImpl implements ResultApiRepository, StepApiRepository {
       return Result.error(errMsg);
     });
   }
-
-
 }
