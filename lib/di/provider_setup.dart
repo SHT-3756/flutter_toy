@@ -4,45 +4,25 @@ import 'package:mbti/domain/repository/result_api_repository.dart';
 import 'package:mbti/domain/repository/step_api_repository.dart';
 import 'package:mbti/domain/use_case/get_results_use_case.dart';
 import 'package:mbti/domain/use_case/get_steps_use_case.dart';
+import 'package:mbti/domain/use_case/use_cases.dart';
+import 'package:mbti/presentation/step/step_view_model.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 import 'package:http/http.dart' as http;
 
-// 1. provider 전체
-List<SingleChildWidget> globalProviders = [
-  ...independentModels,
-  ...dependentModels,
-];
+Future<List<SingleChildWidget>> getProviders() async {
+  GistApi api = GistApi(http.Client());
+  StepApiRepository stepsRepo = GistApiRepositoryImpl(api);
+  ResultApiRepository resultsRepo = GistApiRepositoryImpl(api);
 
-// 2. 독립적인 객체
-List<SingleChildWidget> independentModels = [
-  Provider<http.Client>(
-    create: (context) => http.Client(),
-  ),
-];
+  UseCases useCases = UseCases(
+    getResults: GetResultsUseCase(repository: resultsRepo),
+    getSteps: GetStepsUseCase(repository: stepsRepo),
+  );
 
-// 3. 2번에 의존성있는 객체
-List<SingleChildWidget> dependentModels = [
-  ProxyProvider<http.Client, GistApi>(
-    update: (context, client, _) => GistApi(client),
-  ),
-  ProxyProvider<http.Client, ResultApiRepository>(
-    update: (context, api, _) => GistApiRepositoryImpl(api as GistApi),
-  ),
-  ProxyProvider<http.Client, StepApiRepository>(
-    update: (context, api, _) => GistApiRepositoryImpl(api as GistApi),
-  ),
-  ProxyProvider<http.Client, GetResultsUseCase>(
-    update: (context, repository, _) =>
-        GetResultsUseCase(repository as ResultApiRepository),
-  ),
-  ProxyProvider<http.Client, GetStepsUseCase>(
-    update: (context, repository, _) =>
-        GetStepsUseCase(repository as StepApiRepository),
-  ),
-];
+  StepViewModel stepViewModel = StepViewModel(useCases.getSteps);
 
-// 4. viewModels
-// List<SingleChildWidget> viewModels = [
-//   ChangeNotifierProvider(create: (context) => )
-// ];
+  return [
+    ChangeNotifierProvider(create: (_) => stepViewModel),
+  ];
+}

@@ -11,6 +11,18 @@ class GistApiRepositoryImpl implements ResultApiRepository, StepApiRepository {
   GistApiRepositoryImpl(this.api);
 
   @override
+  Future<Result<List<StepModel>>> fetchStep(String query) async {
+    final Result<Iterable> result = await api.fetch(query);
+    // 성공 실패 분기처리
+    return result.when(success: (successData) {
+      return Result.success(
+          successData.map((e) => StepModel.fromJson(e)).toList());
+    }, error: (errMsg) {
+      return Result.error(errMsg);
+    });
+  }
+
+  @override
   Future<Result<List<ResultModel>>> fetchResult(String query) async {
     final Result<Iterable> result = await api.fetch(query);
 
@@ -23,16 +35,5 @@ class GistApiRepositoryImpl implements ResultApiRepository, StepApiRepository {
     });
   }
 
-  @override
-  Future<Result<List<StepModel>>> fetchStep(String query) async {
-    final Result<Iterable> result = await api.fetch(query);
 
-    // 성공 실패 분기처리
-    return result.when(success: (successData) {
-      return Result.success(
-          successData.map((e) => StepModel.fromJson(e)).toList());
-    }, error: (errMsg) {
-      return Result.error(errMsg);
-    });
-  }
 }

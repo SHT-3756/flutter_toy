@@ -3,10 +3,10 @@ import 'package:mbti/di/provider_setup.dart';
 import 'package:mbti/presentation/home/home_screen.dart';
 import 'package:provider/provider.dart';
 
-void main() {
+void main() async {
   runApp(
     MultiProvider(
-      providers: globalProviders,
+      providers: await getProviders(),
       child: const MyApp(),
     ),
   );

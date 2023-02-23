@@ -5,7 +5,7 @@ import 'package:mbti/domain/repository/result_api_repository.dart';
 class GetResultsUseCase {
   final ResultApiRepository repository;
 
-  GetResultsUseCase(this.repository);
+  GetResultsUseCase({required this.repository});
 
   Future<Result<List<ResultModel>>> call(String query) async {
     final result = await repository.fetchResult(query);

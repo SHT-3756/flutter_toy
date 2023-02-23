@@ -10,6 +10,9 @@ class StepState with _$StepState {
   factory StepState({
     required List<StepModel> steps,
     required bool isLoading,
+    required List selectedResult,
+    required int currentIndex,
+    required bool isLastPage,
   }) = _StepState;
 
   factory StepState.fromJson(Map<String, dynamic> json) =>

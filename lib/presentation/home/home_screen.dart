@@ -35,7 +35,7 @@ class HomeScreen extends StatelessWidget {
                 width: MediaQuery.of(context).size.width / 2,
                 child: CustomButton(
                     buttonText: '시작하기!',
-                    buttonColor: Colors.black,
+                    buttonColor: Colors.yellow,
                     textStyle: const TextStyle(
                       fontWeight: FontWeight.w500,
                       fontSize: 25,
