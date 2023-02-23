@@ -11,7 +11,7 @@ _$_StepState _$$_StepStateFromJson(Map<String, dynamic> json) => _$_StepState(
           .map((e) => StepModel.fromJson(e as Map<String, dynamic>))
           .toList(),
       isLoading: json['isLoading'] as bool,
-      selectedResult: json['selectedResult'] as List<dynamic>,
+      selectedResult: json['selectedResult'] as String,
       currentIndex: json['currentIndex'] as int,
       isLastPage: json['isLastPage'] as bool,
     );

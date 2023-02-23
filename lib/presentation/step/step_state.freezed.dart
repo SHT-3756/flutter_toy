@@ -22,7 +22,7 @@ StepState _$StepStateFromJson(Map<String, dynamic> json) {
 mixin _$StepState {
   List<StepModel> get steps => throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
-  List<dynamic> get selectedResult => throw _privateConstructorUsedError;
+  String get selectedResult => throw _privateConstructorUsedError;
   int get currentIndex => throw _privateConstructorUsedError;
   bool get isLastPage => throw _privateConstructorUsedError;
 
@@ -40,7 +40,7 @@ abstract class $StepStateCopyWith<$Res> {
   $Res call(
       {List<StepModel> steps,
       bool isLoading,
-      List<dynamic> selectedResult,
+      String selectedResult,
       int currentIndex,
       bool isLastPage});
 }
@@ -76,7 +76,7 @@ class _$StepStateCopyWithImpl<$Res, $Val extends StepState>
       selectedResult: null == selectedResult
           ? _value.selectedResult
           : selectedResult // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
+              as String,
       currentIndex: null == currentIndex
           ? _value.currentIndex
           : currentIndex // ignore: cast_nullable_to_non_nullable
@@ -99,7 +99,7 @@ abstract class _$$_StepStateCopyWith<$Res> implements $StepStateCopyWith<$Res> {
   $Res call(
       {List<StepModel> steps,
       bool isLoading,
-      List<dynamic> selectedResult,
+      String selectedResult,
       int currentIndex,
       bool isLastPage});
 }
@@ -131,9 +131,9 @@ class __$$_StepStateCopyWithImpl<$Res>
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
       selectedResult: null == selectedResult
-          ? _value._selectedResult
+          ? _value.selectedResult
           : selectedResult // ignore: cast_nullable_to_non_nullable
-              as List<dynamic>,
+              as String,
       currentIndex: null == currentIndex
           ? _value.currentIndex
           : currentIndex // ignore: cast_nullable_to_non_nullable
@@ -152,11 +152,10 @@ class _$_StepState implements _StepState {
   _$_StepState(
       {required final List<StepModel> steps,
       required this.isLoading,
-      required final List<dynamic> selectedResult,
+      required this.selectedResult,
       required this.currentIndex,
       required this.isLastPage})
-      : _steps = steps,
-        _selectedResult = selectedResult;
+      : _steps = steps;
 
   factory _$_StepState.fromJson(Map<String, dynamic> json) =>
       _$$_StepStateFromJson(json);
@@ -171,14 +170,8 @@ class _$_StepState implements _StepState {
 
   @override
   final bool isLoading;
-  final List<dynamic> _selectedResult;
   @override
-  List<dynamic> get selectedResult {
-    if (_selectedResult is EqualUnmodifiableListView) return _selectedResult;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_selectedResult);
-  }
-
+  final String selectedResult;
   @override
   final int currentIndex;
   @override
@@ -197,8 +190,8 @@ class _$_StepState implements _StepState {
             const DeepCollectionEquality().equals(other._steps, _steps) &&
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
-            const DeepCollectionEquality()
-                .equals(other._selectedResult, _selectedResult) &&
+            (identical(other.selectedResult, selectedResult) ||
+                other.selectedResult == selectedResult) &&
             (identical(other.currentIndex, currentIndex) ||
                 other.currentIndex == currentIndex) &&
             (identical(other.isLastPage, isLastPage) ||
@@ -211,7 +204,7 @@ class _$_StepState implements _StepState {
       runtimeType,
       const DeepCollectionEquality().hash(_steps),
       isLoading,
-      const DeepCollectionEquality().hash(_selectedResult),
+      selectedResult,
       currentIndex,
       isLastPage);
 
@@ -233,7 +226,7 @@ abstract class _StepState implements StepState {
   factory _StepState(
       {required final List<StepModel> steps,
       required final bool isLoading,
-      required final List<dynamic> selectedResult,
+      required final String selectedResult,
       required final int currentIndex,
       required final bool isLastPage}) = _$_StepState;
 
@@ -245,7 +238,7 @@ abstract class _StepState implements StepState {
   @override
   bool get isLoading;
   @override
-  List<dynamic> get selectedResult;
+  String get selectedResult;
   @override
   int get currentIndex;
   @override

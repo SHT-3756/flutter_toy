@@ -4,7 +4,6 @@ import 'package:flutter/material.dart' hide StepState;
 import 'package:mbti/data/data_source/result.dart';
 import 'package:mbti/domain/model/step/step_model.dart';
 import 'package:mbti/domain/use_case/get_steps_use_case.dart';
-import 'package:mbti/presentation/result/result_screen.dart';
 import 'package:mbti/presentation/step/step_state.dart';
 import 'package:mbti/presentation/step/step_ui_event.dart';
 
@@ -14,7 +13,7 @@ class StepViewModel with ChangeNotifier {
   StepState _state = StepState(
     steps: [],
     isLoading: false,
-    selectedResult: [],
+    selectedResult: '',
     currentIndex: 0,
     isLastPage: false,
   );
@@ -51,13 +50,19 @@ class StepViewModel with ChangeNotifier {
     notifyListeners();
   }
 
-  void indexPlus() {
+  indexPlus(String type) {
     if (state.steps.length - 1 == state.currentIndex) {
-      _state = state.copyWith(isLastPage: true);
+      _state = state.copyWith(
+        isLastPage: true,
+        selectedResult: state.selectedResult + type,
+      );
       notifyListeners();
     } else {
-      _state = state.copyWith(currentIndex: state.currentIndex + 1);
-      _state = state.copyWith(isLastPage: false);
+      _state = state.copyWith(
+        isLastPage: false,
+        currentIndex: state.currentIndex + 1,
+        selectedResult: state.selectedResult + type,
+      );
       notifyListeners();
     }
   }

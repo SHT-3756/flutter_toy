@@ -85,7 +85,7 @@ class _StepScreenState extends State<StepScreen> {
                           buttonText: '1. ${state[index].answerA}',
                           buttonColor: Colors.orange,
                           onPressed: () {
-                            stepViewModel.indexPlus();
+                            stepViewModel.indexPlus(state[index].type.substring(0,1));
                             goResultScreen();
                           },
                           textStyle: ts,
@@ -95,7 +95,7 @@ class _StepScreenState extends State<StepScreen> {
                           buttonText: '2. ${state[index].answerB}',
                           buttonColor: Colors.orange,
                           onPressed: () {
-                            stepViewModel.indexPlus();
+                            stepViewModel.indexPlus(state[index].type.substring(1));
                             goResultScreen();
                           },
                           textStyle: ts,
