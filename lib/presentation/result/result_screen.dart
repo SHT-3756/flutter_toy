@@ -34,6 +34,7 @@ class _ResultScreenState extends State<ResultScreen> {
       appbar: AppBar(
         title: const Text('결과'),
         centerTitle: true,
+        backgroundColor: Colors.green,
       ),
       body: resultViewModel.state.isLoading
           ? const Center(child: CircularProgressIndicator())
@@ -61,9 +62,20 @@ class _ResultScreenState extends State<ResultScreen> {
                               ),
                               Padding(
                                 padding: const EdgeInsets.all(8.0),
-                                child: Text(
-                                  e.detail.contents,
-                                  style: const TextStyle(fontSize: 25),
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      border: Border.all(
+                                          width: 3.0, color: Colors.green),
+                                      color: Colors.green,
+                                      borderRadius: const BorderRadius.all(
+                                          Radius.circular(20.0))),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      e.detail.contents,
+                                      style: const TextStyle(fontSize: 25),
+                                    ),
+                                  ),
                                 ),
                               ),
                             ],
