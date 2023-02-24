@@ -88,7 +88,7 @@ class _StepScreenState extends State<StepScreen> {
                       children: [
                         CustomButton(
                           buttonText: '1. ${state[index].answerA}',
-                          buttonColor: Colors.orange,
+                          buttonColor: Colors.white70,
                           onPressed: () {
                             stepViewModel
                                 .indexPlus(state[index].type.substring(0, 1));
@@ -99,7 +99,7 @@ class _StepScreenState extends State<StepScreen> {
                         const SizedBox(height: 10),
                         CustomButton(
                           buttonText: '2. ${state[index].answerB}',
-                          buttonColor: Colors.orange,
+                          buttonColor: Colors.white70,
                           onPressed: () {
                             stepViewModel
                                 .indexPlus(state[index].type.substring(1));

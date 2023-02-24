@@ -66,7 +66,7 @@ class _ResultScreenState extends State<ResultScreen> {
                                   decoration: BoxDecoration(
                                       border: Border.all(
                                           width: 3.0, color: Colors.green),
-                                      color: Colors.green,
+                                      color: Colors.green.shade500,
                                       borderRadius: const BorderRadius.all(
                                           Radius.circular(20.0))),
                                   child: Padding(
