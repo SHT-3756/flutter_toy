@@ -10,10 +10,9 @@ class GistApi {
 
   Future<Result<Iterable>> fetch(String baseUrl, String query) async {
     try {
-      final res = await client.get(Uri.parse('$baseUrl/$query'));
+      final res = await client.get(Uri.parse('$baseUrl$query'));
       Map<String, dynamic> jsonResponse = jsonDecode(res.body);
       Iterable result = jsonResponse['result'];
-      // print('@@@@@@result: $result @@@@@');
       return Result.success(result);
     } catch (e) {
       return Result.error('error: $e');

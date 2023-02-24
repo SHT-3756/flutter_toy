@@ -11,6 +11,7 @@ class StepState with _$StepState {
     required List<StepModel> steps,
     required bool isLoading,
     required String selectedResult,
+    required String selectedStep,
     required int currentIndex,
     required bool isLastPage,
   }) = _StepState;

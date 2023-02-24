@@ -8,21 +8,21 @@ class ResultViewModel extends ChangeNotifier {
   final GetResultsUseCase getResultsUseCase;
 
   // 생성자
-  ResultViewModel(this.getResultsUseCase) {
-
-  }
+  ResultViewModel(this.getResultsUseCase);
 
   ResultState _state = ResultState(
     results: [],
-    isLoading: false,
+    isLoading: true,
   );
 
   ResultState get state => _state;
 
   Future<void> fetch(String query) async {
+    final newQuery = '$query.json';
     _state = state.copyWith(isLoading: true);
-    notifyListeners();
-    final Result<List<ResultModel>> result = await getResultsUseCase(query);
+
+    final Result<List<ResultModel>> result = await getResultsUseCase(newQuery);
+
     result.when(success: (successResponseData) {
       _state = state.copyWith(results: successResponseData);
     }, error: (errorMsg) {

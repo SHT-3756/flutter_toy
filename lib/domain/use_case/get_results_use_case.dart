@@ -9,7 +9,7 @@ class GetResultsUseCase {
 
   Future<Result<List<ResultModel>>> call(String query) async {
     final result = await repository.fetchResult(query);
-
+    
     return result.when(success: (successResponseData) {
       return Result.success(successResponseData);
     }, error: (errMsg) {

@@ -6,6 +6,8 @@ import 'package:mbti/presentation/step/step_view_model.dart';
 import 'package:provider/provider.dart';
 
 class StepScreen extends StatefulWidget {
+  static const routeName = 'stepScreen';
+
   const StepScreen({Key? key}) : super(key: key);
 
   @override
@@ -41,8 +43,11 @@ class _StepScreenState extends State<StepScreen> {
 
     void goResultScreen() {
       if (stepViewModel.state.isLastPage) {
-        Navigator.of(context)
-            .push(MaterialPageRoute(builder: (_) => const ResultScreen()));
+        stepViewModel.duplicate(context, stepViewModel.state.selectedStep);
+        // Navigator.of(context).push(MaterialPageRoute(
+        //     builder: (_) => ResultScreen(
+        //           mbtiType: stepViewModel.state.selectedResult,
+        //         )));
       }
     }
 
@@ -64,7 +69,7 @@ class _StepScreenState extends State<StepScreen> {
                         borderRadius: BorderRadius.circular(20),
                       ),
                       child: Padding(
-                        padding: EdgeInsets.all(8.0),
+                        padding: const EdgeInsets.all(8.0),
                         child: Center(
                           child: Text(
                             'Q. ${state[index].title}',
@@ -85,7 +90,8 @@ class _StepScreenState extends State<StepScreen> {
                           buttonText: '1. ${state[index].answerA}',
                           buttonColor: Colors.orange,
                           onPressed: () {
-                            stepViewModel.indexPlus(state[index].type.substring(0,1));
+                            stepViewModel
+                                .indexPlus(state[index].type.substring(0, 1));
                             goResultScreen();
                           },
                           textStyle: ts,
@@ -95,7 +101,8 @@ class _StepScreenState extends State<StepScreen> {
                           buttonText: '2. ${state[index].answerB}',
                           buttonColor: Colors.orange,
                           onPressed: () {
-                            stepViewModel.indexPlus(state[index].type.substring(1));
+                            stepViewModel
+                                .indexPlus(state[index].type.substring(1));
                             goResultScreen();
                           },
                           textStyle: ts,

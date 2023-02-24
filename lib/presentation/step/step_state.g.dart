@@ -12,6 +12,7 @@ _$_StepState _$$_StepStateFromJson(Map<String, dynamic> json) => _$_StepState(
           .toList(),
       isLoading: json['isLoading'] as bool,
       selectedResult: json['selectedResult'] as String,
+      selectedStep: json['selectedStep'] as String,
       currentIndex: json['currentIndex'] as int,
       isLastPage: json['isLastPage'] as bool,
     );
@@ -21,6 +22,7 @@ Map<String, dynamic> _$$_StepStateToJson(_$_StepState instance) =>
       'steps': instance.steps,
       'isLoading': instance.isLoading,
       'selectedResult': instance.selectedResult,
+      'selectedStep': instance.selectedStep,
       'currentIndex': instance.currentIndex,
       'isLastPage': instance.isLastPage,
     };
