@@ -27,6 +27,7 @@ class GistApiRepositoryImpl implements ResultApiRepository, StepApiRepository {
   Future<Result<List<ResultModel>>> fetchResult(String query) async {
     final Result<Iterable> result =
         await api.fetch(BaseUrl.resultBaseUrl, query);
+    print('쿼리::: ${BaseUrl.resultBaseUrl + query}');
 
     // 성공 실패 분기처리
     return result.when(success: (successData) {

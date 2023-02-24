@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 
 class ResultScreen extends StatefulWidget {
   final String mbtiType;
+
   const ResultScreen({Key? key, required this.mbtiType}) : super(key: key);
 
   @override
@@ -30,16 +31,50 @@ class _ResultScreenState extends State<ResultScreen> {
     final state = resultViewModel.state;
 
     return DefaultLayout(
-        appbar: AppBar(title: const Text('결과')),
-        body: resultViewModel.state.isLoading
-            ? const Center(child: CircularProgressIndicator())
-            : Column(
-                children: [
-                  // Image.asset(state.results[0].detail.path),
-                  // Text(state.results[0].type),
-                  // Text(state.results[0].detail.name),
-                  // Text(state.results[0].detail.contents),
-                ],
-              ));
+      appbar: AppBar(
+        title: const Text('결과'),
+        centerTitle: true,
+      ),
+      body: resultViewModel.state.isLoading
+          ? const Center(child: CircularProgressIndicator())
+          : Column(
+              children: [
+                ...state.results.map(
+                  (e) {
+                    return Expanded(
+                      child: ListView(
+                        children: [
+                          Column(
+                            children: [
+                              SizedBox(
+                                  width: 400,
+                                  height: 400,
+                                  child: Image.asset(e.detail.path)),
+                              Text(
+                                e.type,
+                                style: const TextStyle(
+                                    fontSize: 30, fontWeight: FontWeight.w600),
+                              ),
+                              Text(
+                                e.detail.name,
+                                style: const TextStyle(fontSize: 30),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(
+                                  e.detail.contents,
+                                  style: const TextStyle(fontSize: 25),
+                                ),
+                              ),
+                            ],
+                          )
+                        ],
+                      ),
+                    );
+                  },
+                ),
+              ],
+            ),
+    );
   }
 }

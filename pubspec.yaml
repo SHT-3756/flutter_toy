@@ -65,7 +65,23 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/img/
+    - assets/img/jjang1.png
+    - assets/img/ENFJ.jpg
+    - assets/img/ENFP.jpeg
+    - assets/img/ENTJ.jpg
+    - assets/img/ENTP.jpg
+    - assets/img/ESFJ.jpg
+    - assets/img/ESFP.jpg
+    - assets/img/ESTJ.jpg
+    - assets/img/ESTP.jpeg
+    - assets/img/INFJ.png
+    - assets/img/INFP.jpg
+    - assets/img/INTJ.jpeg
+    - assets/img/INTP.jpg
+    - assets/img/ISFJ.jpg
+    - assets/img/ISFP.jpg
+    - assets/img/ISTJ.jpg
+    - assets/img/ISTP.jpg
 
   fonts:
     - family: dongle
